@@ -25,4 +25,14 @@ class Profile extends Model
     {
         return $this->hasMany(Message::class);
     }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'group_profile');
+    }
+
+    public function authoredBy()
+    {
+        return $this->hasMany(Group::class, 'groups');
+    }
 }

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reposts', function (Blueprint $table) {
+        Schema::create('group_profile', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->index()->constrained('posts');
+            $table->foreignId('profile_id')->index()->constrained('profiles');
+            $table->foreignId('group_id')->index()->constrained('groups');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reposts');
+        Schema::dropIfExists('group_profile');
     }
 };

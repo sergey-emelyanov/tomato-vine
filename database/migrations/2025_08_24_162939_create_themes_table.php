@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
-            $table->text('group')->nullable();
             $table->string('title');
+            $table->foreignId('group_id')->index()->constrained('groups');
             $table->text('description')->nullable();
             $table->timestamps();
         });
