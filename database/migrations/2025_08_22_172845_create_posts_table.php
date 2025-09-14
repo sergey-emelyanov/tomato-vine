@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('tag')->nullable();
             $table->foreignId('profile_id')->index()->nullable()->constrained('profiles');
             $table->text('body')->nullable();
             $table->text('title')->nullable();

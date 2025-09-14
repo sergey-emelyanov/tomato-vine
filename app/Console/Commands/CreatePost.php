@@ -17,21 +17,24 @@ class CreatePost extends Command
      *
      * @var string
      */
-    protected $signature = 'create-post';
+    protected $signature = 'go';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Создает тестовую запись в БД';
+    protected $description = 'Для тестирования всякого';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $profile = Profile::first();
-        dd($profile->comment);
+        $post = Post::first();
+        // $post->tags()->attach([1,2,3]);
+        // $post->tags()->detach([1,2,3]);
+        // $post->tags()->syncWithoutDetaching([1,2,3]);
+        $post->tags()->toggle([1]);
     }
 }
