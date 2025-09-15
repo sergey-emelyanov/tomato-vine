@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Tag;
 use App\Models\Chat;
 use App\Models\Post;
 use App\Models\User;
@@ -31,10 +32,19 @@ class CreatePost extends Command
      */
     public function handle()
     {
-        $post = Post::first();
+
+        // $post = Post::first();
         // $post->tags()->attach([1,2,3]);
         // $post->tags()->detach([1,2,3]);
         // $post->tags()->syncWithoutDetaching([1,2,3]);
-        $post->tags()->toggle([1]);
+        // $post->tags()->toggle([1]);
+
+        //теги
+        $tags = Tag::first();
+
+        // $tags->posts()->attach([1,2,3]);
+        $tags->posts()->detach([1,2,3]);
+
+
     }
 }
