@@ -18,6 +18,7 @@ return new class extends Migration
             //author
             $table->foreignId('profile_id')->index()->constrained('profiles');
             $table->string('avatar')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

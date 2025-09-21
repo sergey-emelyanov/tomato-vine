@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reposts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('post_id')->index()->constrained('posts');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

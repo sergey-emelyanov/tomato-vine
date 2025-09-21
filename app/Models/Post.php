@@ -26,6 +26,6 @@ class Post extends Model
 
     public function repost()
     {
-        return $this->hasMane(Repost::class);
+        return $this->hasMany(Repost::class);
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->foreignId('group_id')->index()->constrained('groups');
             $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

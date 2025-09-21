@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('post_id')->index()->constrained('posts');
             $table->foreignId('parent_id')->index()->nullable()->constrained('comments');
             $table->integer('likes')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

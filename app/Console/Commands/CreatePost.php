@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Profile;
+use App\Models\Category;
 use Illuminate\Console\Command;
 use PHPUnit\Event\Code\Throwable;
 
@@ -40,10 +41,17 @@ class CreatePost extends Command
         // $post->tags()->toggle([1]);
 
         //теги
-        $tags = Tag::first();
-
+        // $tags = Tag::findOrFail(2)->first();
+        //Добавление в pivot таблицу
         // $tags->posts()->attach([1,2,3]);
-        $tags->posts()->detach([1,2,3]);
+        // Удаление из pivot таблицы
+        // $tags->posts()->detach([1,2,3]);
+        // Добавляет новые отношения если их не было, при этом удалит те, которых не было в списке
+        // $tags->posts()->sync([1,2,3]);
+        //$tags->posts()->withPivot() ???
+
+        $comment = Comment::first();
+        dd($comment->category);
 
 
     }

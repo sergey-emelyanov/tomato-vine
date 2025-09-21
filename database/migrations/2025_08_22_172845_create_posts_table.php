@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('likes')->nullable();
             $table->boolean('is_published')->default(1);
             $table->datetime('published_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
