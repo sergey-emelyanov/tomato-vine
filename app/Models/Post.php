@@ -28,4 +28,19 @@ class Post extends Model
     {
         return $this->hasMany(Repost::class);
     }
+
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
+    public function user()
+    {
+        return $this->profile->user();
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }

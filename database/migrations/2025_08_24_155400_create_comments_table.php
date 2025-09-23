@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('body')->nullable();
             $table->foreignId('profile_id')->index()->constrained('profiles');
-            $table->foreignId('post_id')->index()->constrained('posts');
+            $table->morphs('commentable');
             $table->foreignId('parent_id')->index()->nullable()->constrained('comments');
             $table->integer('likes')->nullable();
             $table->softDeletes();

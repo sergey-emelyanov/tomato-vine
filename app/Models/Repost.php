@@ -11,8 +11,13 @@ class Repost extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function posts()
+    public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    public function category()
+    {
+        return $this->post->category();
     }
 }

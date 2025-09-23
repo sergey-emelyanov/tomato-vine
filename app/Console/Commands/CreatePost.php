@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Profile;
 use App\Models\Category;
+use App\Models\Repost;
 use Illuminate\Console\Command;
 use PHPUnit\Event\Code\Throwable;
 
@@ -50,8 +51,32 @@ class CreatePost extends Command
         // $tags->posts()->sync([1,2,3]);
         //$tags->posts()->withPivot() ???
 
-        $comment = Comment::first();
-        dd($comment->category);
+        // Поиск связанных репостов с этой категорией
+        // $category = Category::first();
+        // dd($category->reposts);
+
+        // Инверсия поиск по репосту связанной с ним категории
+        // $repost = Repost::first();
+        // dd($repost->category);
+
+        // Поиск всех постов юзера
+        // $user=User::first();
+        // dd($user->posts);
+
+        // Инверсия поиск юзера по посту
+        // $post = Post::first();
+        // dd($post->user);
+
+        //Поиск всех комментов юзера
+        // $user=User::first();
+        // dd($user->comments);
+
+        // Инверсия поиск юзера по комментам
+        // $comment = Comment::first();
+        // dd($comment->user);
+
+        $post = Post::first();
+        $post->image->create([]);
 
 
     }

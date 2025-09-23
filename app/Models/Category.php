@@ -20,4 +20,9 @@ class Category extends Model
     {
         return $this->hasManyThrough(Comment::class, Post::class);
     }
+
+    public function reposts()
+    {
+        return $this->hasManyThrough(Repost::class, Post::class);
+    }
 }

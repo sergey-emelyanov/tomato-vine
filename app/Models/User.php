@@ -55,4 +55,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function posts()
+    {
+        return $this->hasManyThrough(Post::class, Profile::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasManyThrough(Comment::class, Profile::class);
+    }
 }

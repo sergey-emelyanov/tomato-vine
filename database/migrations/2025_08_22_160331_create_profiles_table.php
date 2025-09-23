@@ -20,6 +20,7 @@ return new class extends Migration
             $table->datetime('birthday')->nullable();
             $table->boolean('is_married')->nullable();
             $table->string('avatar')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

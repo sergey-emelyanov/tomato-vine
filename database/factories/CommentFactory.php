@@ -21,7 +21,7 @@ class CommentFactory extends Factory
         return [
             'body' => fake()->realTextBetween(100, 300),
             'profile_id' => Profile::inRandomOrder()->first()->id,
-            'post_id' => Post::inRandomOrder()->first()->id,
+            // 'post_id' => Post::inRandomOrder()->first()->id,
             'likes' => fake()->numberBetween(10, 50)
         ];
     }

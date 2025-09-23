@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             CategorySeeder::class,
             PostSeeder::class,
-            CommentSeeder::class,
+            // CommentSeeder::class,
             RepostSeeder::class,
             RoleSeeder::class
         ]);

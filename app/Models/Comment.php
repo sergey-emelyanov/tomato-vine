@@ -11,7 +11,7 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
 
-    public function profiles()
+    public function profile()
     {
        return $this->belongsTo(Profile::class);
     }
@@ -36,5 +36,10 @@ class Comment extends Model
     public function category()
     {
         return $this->post->category();
+    }
+
+    public function user()
+    {
+        return $this->post->user();
     }
 }

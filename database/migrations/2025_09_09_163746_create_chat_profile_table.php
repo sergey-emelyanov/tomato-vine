@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('chat_id')->index()->constrained('chats');
             $table->foreignId('profile_id')->index()->constrained('profiles');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

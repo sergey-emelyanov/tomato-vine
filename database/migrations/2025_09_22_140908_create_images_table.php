@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('group_profile', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('profile_id')->index()->constrained('profiles');
-            $table->foreignId('group_id')->index()->constrained('groups');
-            $table->softDeletes();
+            $table->morphs('imageable');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group_profile');
+        Schema::dropIfExists('images');
     }
 };
