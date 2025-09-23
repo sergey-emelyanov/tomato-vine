@@ -6,10 +6,11 @@ use App\Models\Tag;
 use App\Models\Chat;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Image;
+use App\Models\Repost;
 use App\Models\Comment;
 use App\Models\Profile;
 use App\Models\Category;
-use App\Models\Repost;
 use Illuminate\Console\Command;
 use PHPUnit\Event\Code\Throwable;
 
@@ -75,8 +76,21 @@ class CreatePost extends Command
         // $comment = Comment::first();
         // dd($comment->user);
 
+        // Находим пост к и создаем ему image
+        // $post = Post::first();
+        // $post->image()->create();
+        // Получаем связанный image
+        // dd($post->image);
+        // Получаем пост по изображению 
+        // $image = Image::first();
+        // dd($image->imageable);
         $post = Post::first();
-        $post->image->create([]);
+        
+        $post->comments()->create([
+            'body' => 'some body',
+            'profile_id' => 1
+
+        ]);
 
 
     }
