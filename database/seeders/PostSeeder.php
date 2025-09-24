@@ -16,7 +16,6 @@ class PostSeeder extends Seeder
     {
         // Получаем все теги для записи в базу
         $tags = Tag::all();
-
         $posts=Post::factory(10)->create();
 
         foreach($posts as $post){

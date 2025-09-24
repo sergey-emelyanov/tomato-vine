@@ -14,10 +14,10 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
+    // public function tags()
+    // {
+    //     return $this->belongsToMany(Tag::class);
+    // }
 
     public function comment()
     {
@@ -52,5 +52,15 @@ class Post extends Model
     public function likes()
     {
         return $this->morphToMany(Profile::class, 'likable');
+    }
+
+    public function views()
+    {
+        return $this->morphMany(View::class, 'viewable');
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 }

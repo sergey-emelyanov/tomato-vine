@@ -11,6 +11,7 @@ use App\Models\Repost;
 use App\Models\Comment;
 use App\Models\Profile;
 use App\Models\Category;
+use App\Models\View;
 use Illuminate\Console\Command;
 use PHPUnit\Event\Code\Throwable;
 
@@ -81,13 +82,13 @@ class CreatePost extends Command
         // $post->image()->create();
         // Получаем связанный image
         // dd($post->image);
-        // Получаем пост по изображению 
+        // Получаем пост по изображению
         // $image = Image::first();
         // dd($image->imageable);
 
-        // Cоздаем коммент для поста 
+        // Cоздаем коммент для поста
         // $post = Post::first();
-        
+
         // $post->comments()->create([
         //     'body' => 'another command',
         //     'profile_id' => 1
@@ -97,8 +98,47 @@ class CreatePost extends Command
         // $comment = Comment::first();
         // dd($comment->commentable);
 
-        $post = Post::first();
-        $post->likes()->attach(1);
+        // Добавить лайк к посту (полиморф)
+        // $post = Post::first();
+        // $post->likes()->attach(2);
+
+        // Хотим увидеть сколько данный профиль поставил лайков постам
+        // $profile = Profile::find(2);
+        // dd($profile->likedPosts);
+
+        // Добавили для поста просмотры
+        // $post = Post::first();
+        // $post->views()->create([
+        //     'count' => 7
+        // ]);
+        // dd($post->views);
+
+        // Просмотр поста через просмотры
+        // $view = View::first();
+        // dd($view->viewable);
+
+        // Добавляем просмотр комментам
+        // $comment = Comment::first();
+        // $comment->views()->create([
+        //     'count' => 5
+        // ]);
+        // $view = View::find(3);
+        // dd($view->viewable);
+
+        // Получить все теги для данного поста
+        // $post = Post::first();
+        // dd($post->tags);
+
+        // Добавили профиль
+        // $profile = Profile::first();
+        // $profile->tags()->attach(1);
+        //Получение тегов
+        // dd($profile->tags);
+
+        $tag = Tag::first();
+        dd($tag->posts);
+
+
 
 
     }

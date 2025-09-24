@@ -47,4 +47,10 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
+    public function views()
+    {
+        return $this->morphMany(View::class, 'viewable');
+    }
+
 }

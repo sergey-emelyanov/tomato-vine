@@ -43,4 +43,14 @@ class Profile extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function likedPosts()
+    {
+        return $this->morphedByMany(Post::class, 'likable');
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
 }
