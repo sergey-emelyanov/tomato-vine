@@ -84,13 +84,21 @@ class CreatePost extends Command
         // Получаем пост по изображению 
         // $image = Image::first();
         // dd($image->imageable);
-        $post = Post::first();
-        
-        $post->comments()->create([
-            'body' => 'some body',
-            'profile_id' => 1
 
-        ]);
+        // Cоздаем коммент для поста 
+        // $post = Post::first();
+        
+        // $post->comments()->create([
+        //     'body' => 'another command',
+        //     'profile_id' => 1
+
+        // ]);
+        // Получаем пост по комменту
+        // $comment = Comment::first();
+        // dd($comment->commentable);
+
+        $post = Post::first();
+        $post->likes()->attach(1);
 
 
     }

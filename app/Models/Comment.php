@@ -42,4 +42,9 @@ class Comment extends Model
     {
         return $this->post->user();
     }
+
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
 }
