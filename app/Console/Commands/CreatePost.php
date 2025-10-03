@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\StoredUserEvent;
 use App\Models\Tag;
 use App\Models\Chat;
 use App\Models\Post;
@@ -135,8 +136,11 @@ class CreatePost extends Command
         //Получение тегов
         // dd($profile->tags);
 
-        $tag = Tag::first();
-        dd($tag->posts);
+        // $tag = Tag::first();
+        // dd($tag->posts);
+
+        $user = User::factory()->create();
+        StoredUserEvent::dispatch($user);
 
 
 

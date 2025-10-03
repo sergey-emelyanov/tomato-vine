@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         );
 
         // создаем профиль
-        $user->profile()->create();
+        // $user->profile()->create();
 
 
         $this->call([
