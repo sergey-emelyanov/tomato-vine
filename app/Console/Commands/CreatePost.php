@@ -139,11 +139,32 @@ class CreatePost extends Command
         // $tag = Tag::first();
         // dd($tag->posts);
 
-        $user = User::factory()->create();
-        StoredUserEvent::dispatch($user);
+        // Создание юзера и вызов эвента для создания профиля
+        // $user = User::factory()->create();
+        // StoredUserEvent::dispatch($user);
 
 
+        //создание нового поста для отлова события created
+        // Post::create([
+        //     'profile_id' => 1,
+        //     'body' => 'wependrodi',
+        //     'title' => 'my title',
+        //     'category_id' => 3,
+        //     'is_published' => true,
+        //     'likes' => 25
+        // ]);
 
+        //Обновление созданого поста для отлова события updating
+        // $post = Post::find(13);
+        // $post->update([
+        //     'title' => 'Обновленный пост'
+        // ]);
 
+        //Достаем этот пост чтобы отловить retrieved
+        // $post = Post::find(13);
+
+        //Достаем пост и удаляем, чтобы отловить deleting
+        $post = Post::find(10);
+        $post->delete();
     }
 }
