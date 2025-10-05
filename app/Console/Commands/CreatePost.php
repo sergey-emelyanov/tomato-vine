@@ -155,16 +155,16 @@ class CreatePost extends Command
         // ]);
 
         //Обновление созданого поста для отлова события updating
-        // $post = Post::find(13);
+        // $post = Post::find(14);
         // $post->update([
-        //     'title' => 'Обновленный пост'
+        //     'title' => 'Обновленный пост c ключиками'
         // ]);
 
         //Достаем этот пост чтобы отловить retrieved
         // $post = Post::find(13);
 
         //Достаем пост и удаляем, чтобы отловить deleting
-        $post = Post::find(10);
-        $post->delete();
+        // $post = Post::find(14);
+        // $post->delete();
     }
 }

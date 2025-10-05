@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasLog;
 use App\Observers\PostObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[ObservedBy(PostObserver::class)]
+// #[ObservedBy(PostObserver::class)]
 class Post extends Model
 {
     use HasFactory;
+    use HasLog;
 
     public function category()
     {
