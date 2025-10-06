@@ -145,14 +145,14 @@ class CreatePost extends Command
 
 
         //создание нового поста для отлова события created
-        // Post::create([
-        //     'profile_id' => 1,
-        //     'body' => 'wependrodi',
-        //     'title' => 'my title',
-        //     'category_id' => 3,
-        //     'is_published' => true,
-        //     'likes' => 25
-        // ]);
+        Post::create([
+            'profile_id' => 1,
+            'body' => 'wependrodi of the body',
+            'title' => 'my title of the titiles',
+            'category_id' => 4,
+            'is_published' => true,
+            'likes' => 40
+        ]);
 
         //Обновление созданого поста для отлова события updating
         // $post = Post::find(14);

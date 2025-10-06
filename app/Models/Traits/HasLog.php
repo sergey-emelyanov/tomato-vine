@@ -3,6 +3,9 @@
 namespace App\Models\Traits;
 
 use App\Models\Log;
+use App\Events\FinishLogEvent;
+use App\Events\StoredLogEvent;
+use App\Listeners\FinishLogListener;
 
 trait HasLog
 {
@@ -30,11 +33,13 @@ trait HasLog
                 continue; // просто пропускаем эти поля
             }
             $log = New Log;
+            StoredLogEvent::dispatch($log);
             $log -> model = class_basename($model);
             $log -> method = 'Creating';
             $log -> old_value = $key . '';
             $log -> new_value = $key . ': ' . $value ?? '';
             $log ->save();
+            FinishLogEvent::dispatch($log);
         }
     }
 
