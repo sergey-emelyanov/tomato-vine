@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exceptions\PostExceeption;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,6 +20,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        PostExceeption::isPostAlreadyExists($post);
         return PostResource::make($post)->resolve();
     }
 

@@ -2,19 +2,20 @@
 
 namespace App\Console\Commands;
 
-use App\Events\StoredUserEvent;
 use App\Models\Tag;
 use App\Models\Chat;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\View;
 use App\Models\Image;
 use App\Models\Repost;
 use App\Models\Comment;
 use App\Models\Profile;
 use App\Models\Category;
-use App\Models\View;
+use App\Events\StoredUserEvent;
 use Illuminate\Console\Command;
 use PHPUnit\Event\Code\Throwable;
+use Illuminate\Support\Facades\Log;
 
 class CreatePost extends Command
 {
@@ -145,14 +146,14 @@ class CreatePost extends Command
 
 
         //создание нового поста для отлова события created
-        Post::create([
-            'profile_id' => 1,
-            'body' => 'wependrodi of the body',
-            'title' => 'my title of the titiles',
-            'category_id' => 4,
-            'is_published' => true,
-            'likes' => 40
-        ]);
+        // Post::create([
+        //     'profile_id' => 1,
+        //     'body' => 'wependrodi of the body',
+        //     'title' => 'my title of the titiles',
+        //     'category_id' => 4,
+        //     'is_published' => true,
+        //     'likes' => 40
+        // ]);
 
         //Обновление созданого поста для отлова события updating
         // $post = Post::find(14);
@@ -166,5 +167,12 @@ class CreatePost extends Command
         //Достаем пост и удаляем, чтобы отловить deleting
         // $post = Post::find(14);
         // $post->delete();
+
+        // Создаем пробный log
+        // Log::channel('posts')->info('post created');
+
+        // Создаем пост фабрикой и логируем успех
+        $post = Post::factory()->create();
+
     }
 }

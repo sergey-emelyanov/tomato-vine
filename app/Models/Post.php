@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasLog;
+use App\Models\Traits\Loggable;
 use App\Observers\PostObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    use HasLog;
+    use Loggable;
 
     public function category()
     {

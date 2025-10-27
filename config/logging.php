@@ -3,6 +3,7 @@
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
+use App\LogFormatter\PostLogFormatter;
 use Monolog\Processor\PsrLogMessageProcessor;
 
 return [
@@ -126,6 +127,13 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'posts' => [
+            'path'=> storage_path('logs/posts.log'),
+            'driver' => 'single',
+            'replace_placeholders' => true,
+            'tap' => [PostLogFormatter::class]
+        ]
 
     ],
 
