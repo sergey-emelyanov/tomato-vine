@@ -16,6 +16,7 @@ use App\Events\StoredUserEvent;
 use Illuminate\Console\Command;
 use PHPUnit\Event\Code\Throwable;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 class CreatePost extends Command
 {
@@ -172,7 +173,10 @@ class CreatePost extends Command
         // Log::channel('posts')->info('post created');
 
         // Создаем пост фабрикой и логируем успех
-        $post = Post::factory()->create();
+        // $post = Post::factory(2)->create();
+
+        $password = Hash::make('12345');
+        dd($password);
 
     }
 }

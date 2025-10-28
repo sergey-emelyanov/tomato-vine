@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ChatController;
@@ -10,6 +11,14 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\RepostController;
+
+Route::post('auth/login', [AuthController::class, 'login']);
+Route::group(['middleware' => 'jwt.auth','prefix' => 'auth'], function ($router) {
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('me', [AuthController::class, 'me']);
+
+});
 
 Route::group(['prefix'=>'posts', 'as'=>'posts.'], function() {
     Route::get('/', [PostController::class, 'index']);
