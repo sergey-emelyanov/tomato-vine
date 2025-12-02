@@ -15,17 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = [
-            'name' => 'Vasya',
-            'email' => 'vasya@mail.com',
-            'password' => Hash::make(1234)
-        ];
+        // $user = [
+        //     'name' => 'Vasya',
+        //     'email' => 'vasya@mail.com',
+        //     'password' => Hash::make(1234)
+        // ];
 
         // создаем юзера
-        $user = User::firstOrCreate(
-            ['id' => 2], // Условия поиска
-            $user // Данные для создания
-        );
+        // $user = User::firstOrCreate(
+        //     ['id' => 2], // Условия поиска
+        //     $user // Данные для создания
+        // );
 
         // создаем профиль
         // $user->profile()->create();

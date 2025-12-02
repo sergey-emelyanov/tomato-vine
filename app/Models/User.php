@@ -92,4 +92,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function getIsAdminAttribute():bool
+    {
+        return $this->role->contains('title', 'admin');
+    }
 }

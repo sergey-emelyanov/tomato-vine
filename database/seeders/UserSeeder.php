@@ -14,7 +14,11 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::factory()->create();
-        StoredUserEvent::dispatch($user);
+        $users = User::factory(5)->create();
+
+        foreach($users as $user){
+            $user->profile()->create();
+        }
+
     }
 }

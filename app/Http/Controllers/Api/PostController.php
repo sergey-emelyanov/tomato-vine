@@ -20,7 +20,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        PostExceeption::isPostAlreadyExists($post);
+        // PostExceeption::isPostAlreadyExists($post);
         return PostResource::make($post)->resolve();
     }
 

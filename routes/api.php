@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\RepostController;
+use App\Http\Middleware\IsAdminMiddleware;
 
 Route::post('auth/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'jwt.auth','prefix' => 'auth'], function ($router) {
@@ -20,12 +21,14 @@ Route::group(['middleware' => 'jwt.auth','prefix' => 'auth'], function ($router)
 
 });
 
-Route::group(['prefix'=>'posts', 'as'=>'posts.'], function() {
-    Route::get('/', [PostController::class, 'index']);
-    Route::get('/{post}/', [PostController::class, 'show']);
-    Route::post('/', [PostController::class, 'store']);
-    Route::patch('/{post}/', [PostController::class, 'update']);
-    Route::delete('/{post}/', [PostController::class, 'destroy']);
+Route::group(['middleware' => ['jwt.auth', IsAdminMiddleware::class]], function(){
+    Route::group(['prefix'=>'posts', 'as'=>'posts.'], function() {
+        Route::get('/', [PostController::class, 'index']);
+        Route::get('/{post}/', [PostController::class, 'show']);
+        Route::post('/', [PostController::class, 'store']);
+        Route::patch('/{post}/', [PostController::class, 'update']);
+        Route::delete('/{post}/', [PostController::class, 'destroy']);
+    });
 });
 
 Route::group(['prefix'=>'categories', 'as'=>'categories.'], function(){
