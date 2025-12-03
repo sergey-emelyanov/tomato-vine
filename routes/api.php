@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
+use App\Http\Middleware\CanEdit;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RepostController;
+use App\Http\Middleware\IsAdminMiddleware;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\GroupController;
 use App\Http\Controllers\Api\CommentController;
-use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\ProfileController;
-use App\Http\Controllers\RepostController;
-use App\Http\Middleware\IsAdminMiddleware;
+use App\Http\Controllers\Api\CategoryController;
 
 Route::post('auth/login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'jwt.auth','prefix' => 'auth'], function ($router) {
@@ -21,7 +22,7 @@ Route::group(['middleware' => 'jwt.auth','prefix' => 'auth'], function ($router)
 
 });
 
-Route::group(['middleware' => ['jwt.auth', IsAdminMiddleware::class]], function(){
+Route::group(['middleware' => ['jwt.auth', CanEdit::class]], function(){
     Route::group(['prefix'=>'posts', 'as'=>'posts.'], function() {
         Route::get('/', [PostController::class, 'index']);
         Route::get('/{post}/', [PostController::class, 'show']);
