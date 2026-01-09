@@ -18,10 +18,12 @@ class CommentFactory extends Factory
      */
     public function definition(): array
     {
+        $post = Post::inRandomOrder()->first();
         return [
             'body' => fake()->realTextBetween(100, 300),
             'profile_id' => Profile::inRandomOrder()->first()->id,
-            // 'post_id' => Post::inRandomOrder()->first()->id,
+            'commentable_type' => Post::class,
+            'commentable_id' => $post->id,
             'likes' => fake()->numberBetween(10, 50)
         ];
     }
