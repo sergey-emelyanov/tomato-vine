@@ -74,8 +74,4 @@ class Post extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    // public function scopeFilter(Builder $builder, array $data)
-    // {
-    //     return  (new PostFilter())->apply($builder, $data);
-    // }
 }
