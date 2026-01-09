@@ -22,15 +22,15 @@ Route::group(['middleware' => 'jwt.auth','prefix' => 'auth'], function ($router)
 
 });
 
-Route::group(['middleware' => ['jwt.auth', CanEdit::class]], function(){
-    Route::group(['prefix'=>'posts', 'as'=>'posts.'], function() {
-        Route::get('/', [PostController::class, 'index']);
-        Route::get('/{post}/', [PostController::class, 'show']);
-        Route::post('/', [PostController::class, 'store']);
-        Route::patch('/{post}/', [PostController::class, 'update']);
-        Route::delete('/{post}/', [PostController::class, 'destroy']);
-    });
+// Route::group(['middleware' => ['jwt.auth', CanEdit::class]], function(){
+Route::group(['prefix'=>'posts', 'as'=>'posts.'], function() {
+    Route::get('/', [PostController::class, 'index']);
+    Route::get('/{post}/', [PostController::class, 'show']);
+    Route::post('/', [PostController::class, 'store']);
+    Route::patch('/{post}/', [PostController::class, 'update']);
+    Route::delete('/{post}/', [PostController::class, 'destroy']);
 });
+// });
 
 Route::group(['prefix'=>'categories', 'as'=>'categories.'], function(){
     Route::get('/', [CategoryController::class, 'index']);

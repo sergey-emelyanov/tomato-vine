@@ -5,15 +5,19 @@ namespace App\Models;
 use App\Models\Traits\HasLog;
 use App\Models\Traits\Loggable;
 use App\Observers\PostObserver;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Http\Filters\PostFilter;
+use App\Models\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 // #[ObservedBy(PostObserver::class)]
 class Post extends Model
 {
     use HasFactory;
     use Loggable;
+    use HasFilter;
 
     public function category()
     {
@@ -69,4 +73,9 @@ class Post extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    // public function scopeFilter(Builder $builder, array $data)
+    // {
+    //     return  (new PostFilter())->apply($builder, $data);
+    // }
 }
