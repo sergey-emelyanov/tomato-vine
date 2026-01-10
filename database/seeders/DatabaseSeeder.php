@@ -15,30 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $user = [
-        //     'name' => 'Vasya',
-        //     'email' => 'vasya@mail.com',
-        //     'password' => Hash::make(1234)
-        // ];
-
-        // создаем юзера
-        // $user = User::firstOrCreate(
-        //     ['id' => 2], // Условия поиска
-        //     $user // Данные для создания
-        // );
-
-        // создаем профиль
-        // $user->profile()->create();
-
 
         $this->call([
             UserSeeder::class,
+            ProfileSeeder::class,
             TagSeeder::class,
             CategorySeeder::class,
             PostSeeder::class,
             CommentSeeder::class,
             RepostSeeder::class,
-            RoleSeeder::class
+            RoleSeeder::class,
         ]);
     }
 }
