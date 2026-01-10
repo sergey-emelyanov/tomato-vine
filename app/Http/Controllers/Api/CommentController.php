@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Comment\IndexRequest;
 use App\Http\Requests\Api\Comment\StoreRequest;
 use App\Http\Requests\Api\Comment\UpdateRequest;
 use App\Http\Resources\Comment\CommentResource;
@@ -12,9 +13,11 @@ use App\Services\CommentServices;
 
 class CommentController extends Controller
 {
-    public function index()
+    public function index(IndexRequest $request)
     {
-        return CommentResource::collection(Comment::all())->resolve();
+        $data = $request->validated();
+        $comments = Comment::filter($data)->get();
+        return CommentResource::collection($comments)->resolve();
     }
 
     public function show(Comment $comment)

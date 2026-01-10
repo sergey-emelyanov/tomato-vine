@@ -19,7 +19,7 @@ class CommentResource extends JsonResource
             'body'=>$this->body,
             'post'=>$this->post,
             'parent'=>$this->parent,
-            'likes'=>$this->likes
+            'likes'=>$this->likes,
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Filters;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
+
 
 class PostFilter
 {
