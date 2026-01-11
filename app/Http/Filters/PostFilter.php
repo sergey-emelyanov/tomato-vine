@@ -38,4 +38,24 @@ class PostFilter
     {
         $builder->where('category_id', $value);
     }
+
+    private function publishedAtFrom(Builder $builder, $value):void
+    {
+        $builder->whereDate('published_at', '>=', $value);
+    }
+
+    private function publishedAtTo(Builder $builder, $value):void
+    {
+        $builder->whereDate('published_at', '<=', $value);
+    }
+
+    private function likesFrom(Builder $builder, $value):void
+    {
+        $builder->where('likes', '>=', $value);
+    }
+
+    private function likesTo(Builder $builder, $value):void
+    {
+        $builder->where('likes', '<=', $value);
+    }
 }
