@@ -1,16 +1,12 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\Client\PostController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::group(['prefix'=>'posts', 'as'=>'posts.'], function(){
-    Route::get('/index/', [PostController::class, 'index']);
-    Route::get('/store/', [PostController::class, 'store']);
-    Route::get('/update/{post}', [PostController::class, 'update']);
-    Route::get('/delete/{post}', [PostController::class, 'destroy']);
-    Route::get('/{post}/', [PostController::class, 'show']);
-});
+Route::get('posts', [PostController::class, 'index']);
+
+require __DIR__.'/auth.php';
