@@ -13,3 +13,4 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::get('profiles', [ProfileController::class, 'index']);
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
