@@ -1,10 +1,21 @@
 <template>
-    <div class="w-1/2 mx-auto mb-4">
-        <span class="">index posts</span>
-        <div v-for="post in posts" class="mb-4 p-4 border border-gray-400">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.body }}</p>
-        </div>
+    <div>
+        <table class="bg-white border border-gray-200 w-full">
+            <thead>
+                <tr>
+                    <th class="p-4 border-b border-r border-gray-200">ID</th>
+                    <th class="p-4 border-b border-r border-gray-200">TITLE</th>
+                    <th class="p-4 border-b border-gray-200">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="post in posts">
+                    <td class="p-4 border-b border-r border-gray-200">{{ post.id }}</td>
+                    <td class="p-4 border-b border-r border-gray-200">{{ post.title }}</td>
+                    <td class="p-4 border-b border-gray-200"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
