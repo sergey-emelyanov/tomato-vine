@@ -11,7 +11,6 @@ class PostController extends Controller
 {
     public function index(IndexRequest $request){
 
-        dd(111);
         $data = $request->validated();
         $posts = Post::query();
 

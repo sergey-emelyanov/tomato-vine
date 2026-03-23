@@ -10,5 +10,6 @@ use Inertia\Inertia;
 
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/dashboard/', [DashBoardcontroller::class, 'index'])->name('dashbord');
-    Route::get('/posts/',[PostController::class, 'index'])->name('posts.index');
+    Route::get('/posts/',[PostController::class, 'index'])->name('admin.posts.index');
+    Route::get('/post/{post}/',[PostController::class, 'show'])->name('admin.posts.show');
 });
