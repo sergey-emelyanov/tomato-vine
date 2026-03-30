@@ -18,4 +18,12 @@ class CategoryController extends Controller
         return inertia('Admin/Category/Index', compact('categories'));
 
     }
+
+    public function show(Category $category)
+    {
+        $category = CategoryResource::make($category)->resolve();
+        // dd($category);
+
+        return inertia('Admin/Category/Show', compact('category'));
+    }
 }

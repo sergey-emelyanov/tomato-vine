@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin'], function(){
     //категории
     Route::group(['prefix'=>'categories'], function(){
         Route::get('/', [CategoryController::class, 'index'])->name('admin.categories.index');
+        Route::get('/category/{category}', [CategoryController::class, 'show'])->name('admin.categories.show');
     });
 
 });
