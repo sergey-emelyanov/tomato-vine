@@ -4,13 +4,14 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashBoardcontroller;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
 
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdminMiddleware::class]], function(){
     Route::get('/dashboard/', [DashBoardcontroller::class, 'index'])->name('dashbord');
 
     //посты

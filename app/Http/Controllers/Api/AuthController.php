@@ -3,11 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        Config::set('auth.defaults.guard', 'api');
+    }
+
 
     /**
      * Get a JWT via given credentials.
