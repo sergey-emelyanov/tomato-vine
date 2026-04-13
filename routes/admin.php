@@ -17,7 +17,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdminMiddleware::c
     //посты
     Route::group(['prefix' => 'posts'], function(){
         Route::get('/',[PostController::class, 'index'])->name('admin.posts.index');
+        Route::get('/post/create/', [PostController::class, 'create'])->name('admin.posts.create');
         Route::get('/post/{post}/',[PostController::class, 'show'])->name('admin.posts.show');
+        Route::post('/post/', [PostController::class, 'store'])->name('admin.posts.store');
     });
 
     //категории

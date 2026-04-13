@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div >
+        <div class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white m-4">
+            <Link :href="route('admin.posts.create')">CREATE</Link>
+        </div>
         <table class="bg-white border border-gray-200 w-full">
             <thead>
                 <tr>
