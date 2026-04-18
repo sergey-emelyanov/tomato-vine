@@ -25,7 +25,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdminMiddleware::c
     //категории
     Route::group(['prefix'=>'categories'], function(){
         Route::get('/', [CategoryController::class, 'index'])->name('admin.categories.index');
+        Route::get('/category/create/', [CategoryController::class, 'create'])->name('admin.categories.create');
         Route::get('/category/{category}/', [CategoryController::class, 'show'])->name('admin.categories.show');
+        Route::post('/post/', [CategoryController::class, 'store'])->name('admin.categories.store');
     });
 
     //профили

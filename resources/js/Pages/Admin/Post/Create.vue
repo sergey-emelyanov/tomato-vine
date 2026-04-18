@@ -10,7 +10,7 @@
             <textarea v-model="post.body"class="border border-gray-200 p-4 w-full" placeholder="body"></textarea>
         </div>
         <div class="mb-4">
-            <a href="#" @click="storePost" class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white">STORE</a>
+            <a href="#" @click.prevent="storePost" class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white">STORE</a>
         </div>
     </div>
 </template>
