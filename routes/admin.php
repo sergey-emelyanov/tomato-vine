@@ -33,7 +33,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdminMiddleware::c
     //профили
     Route::group(['prefix'=>'profiles'], function(){
         Route::get('/', [ProfileController::class, 'index'])->name('admin.profiles.index');
+        Route::get('/profile/create/', [ProfileController::class, 'create'])->name('admin.profiles.create');
         Route::get('/profile/{profile}/', [ProfileController::class, 'show'])->name('admin.profiles.show');
+        Route::post('/post/', [ProfileController::class, 'store'])->name('admin.profiles.store');
     });
 
 });

@@ -39,4 +39,29 @@ class ProfileController extends Controller
 
         return inertia('Admin/Profile/Show', compact('profile'));
     }
+
+
+    /**
+     *  Метод отображающий страницу создания профиля
+     *
+     * [GET] /admin/profiles/profile/create/
+     * @return inertia/response
+     *
+     */
+    public function create()
+    {
+        return inertia('Admin/Profile/Create');
+    }
+
+    /**
+     * Метод отвечающий за запись данныз с фронта
+     *
+     * [POST] /admin/profiles/post/
+     *
+     *
+     */
+    public function store()
+    {
+
+    }
 }
