@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Profile\StoreRequest;
 use App\Http\Resources\Profile\ProfileResource;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -56,12 +57,19 @@ class ProfileController extends Controller
     /**
      * Метод отвечающий за запись данныз с фронта
      *
-     * [POST] /admin/profiles/post/
-     *
+     * [POST] /admin/profiles/profile/
+     * @param StoreRequest
      *
      */
-    public function store()
+    public function store(StoreRequest $request)
     {
+        $data = $request->validated();
+        $data['user_id'] = 2;
+        $data['gender'] = $data['gender'] == 'Мужской' ? 'male' : 'female';
+
+        $profile = Profile::create($data);
+
+        return ProfileResource::make($profile)->resolve();
 
     }
 }
