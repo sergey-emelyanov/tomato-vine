@@ -7,7 +7,13 @@
             <input v-model="post.title" class="border border-gray-200 p-4 w-full" type="text" placeholder="title">
         </div>
         <div class="mb-4">
-            <textarea v-model="post.body"class="border border-gray-200 p-4 w-full" placeholder="body"></textarea>
+            <textarea v-model="post.body" class="border border-gray-200 p-4 w-full" placeholder="body"></textarea>
+        </div>
+        <div class="mb-4">
+            <select v-model="post.category_id" class="border border-gray-200 p-4 w-full">
+                <option value="null">Не выбрано</option>
+                <option v-for="category in categories" :value="category.id">{{ category.title }}</option>
+            </select>
         </div>
         <div class="mb-4">
             <a href="#" @click.prevent="storePost" class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white">STORE</a>
@@ -28,11 +34,16 @@ import axios from 'axios';
             Link
         },
 
+        props: {
+            categories: Array
+        },
+
         data() {
             return {
                 post: {
                     title: '',
-                    body: ''
+                    body: '',
+                    category_id: null
                 }
             }
         },

@@ -16,7 +16,16 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'body' => 'nullable|string'
+            'body' => 'nullable|string',
+            'category_id' => 'required|integer|exists:categories,id',
+            'likes' => 'nullable|integer'
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        return $this->merge([
+            'likes' => 0
+        ]);
     }
 }
