@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreRequest extends FormRequest
 {
@@ -24,8 +25,10 @@ class StoreRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+
         return $this->merge([
-            'likes' => 0
+            'likes' => 0,
+            'profile_id' => Auth::user()->id
         ]);
     }
 }
