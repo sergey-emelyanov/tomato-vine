@@ -16,6 +16,9 @@
             </select>
         </div>
         <div class="mb-4">
+            <input @change="setImage" class="border border-gray-200 p-4 w-full" type="file">
+        </div>
+        <div class="mb-4">
             <a href="#" @click.prevent="storePost" class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white">STORE</a>
         </div>
     </div>
@@ -50,11 +53,21 @@ import axios from 'axios';
 
         methods : {
             storePost () {
-                axios.post(route('admin.posts.store'), this.post)
+                axios.post(route('admin.posts.store'), this.post, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
                     .then((res)=> {
                         console.log(res);
                     })
+            },
+
+            setImage(e) {
+                this.post.image = e.target.files[0];
+                // console.log(this.post);
             }
+
         }
     }
 </script>
