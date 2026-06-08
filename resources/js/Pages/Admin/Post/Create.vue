@@ -16,7 +16,7 @@
             </select>
         </div>
         <div class="mb-4">
-            <input @change="setImage" class="border border-gray-200 p-4 w-full" type="file">
+            <input ref="input_image" @change="setImage" class="border border-gray-200 p-4 w-full" type="file">
         </div>
         <div class="mb-4">
             <a href="#" @click.prevent="storePost" class="inline-block px-3 py-2 bg-sky-600 border border-sky-700 text-white">STORE</a>
@@ -59,7 +59,10 @@ import axios from 'axios';
                     }
                 })
                     .then((res)=> {
-                        console.log(res);
+                        this.$refs.input_image.value = null
+                        this.post = {
+                            category_id: null
+                        }
                     })
             },
 

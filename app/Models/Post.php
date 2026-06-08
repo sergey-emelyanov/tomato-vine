@@ -7,10 +7,12 @@ use App\Models\Traits\Loggable;
 use App\Observers\PostObserver;
 use App\Http\Filters\PostFilter;
 use App\Models\Traits\HasFilter;
+use Illuminate\Container\Attributes\Storage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 // #[ObservedBy(PostObserver::class)]
 class Post extends Model
@@ -72,6 +74,11 @@ class Post extends Model
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function getImgUrlAttribute():string
+    {
+        return FacadesStorage::disk('public')->url($this->image_path);
     }
 
 }
