@@ -3,8 +3,8 @@
         <div class="text-lg mb-4">
             {{ post.title }}
         </div>
-        <div class="text-gray-600 mb-4">
-            <img :src="post.img_url" :title="post.title" :alt="post.title"/>
+        <div v-for="image_url in urls" class="text-gray-600 mb-4">
+            <img :src="image_url" :title="post.title" :alt="post.title"/>
         </div>
         <div class="text-gray-600 text-sm mb-4">
             <p>{{ post.body }}</p>
@@ -31,6 +31,10 @@ import { Link } from '@inertiajs/vue3';
         props: {
             post : {
                 type: Object,
+                required: true
+            },
+            urls: {
+                type: Array,
                 required: true
             }
         }

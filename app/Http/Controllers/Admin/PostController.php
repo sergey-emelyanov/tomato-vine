@@ -9,6 +9,7 @@ use App\Http\Resources\Post\PostResource;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
+use SebastianBergmann\FileIterator\Facade;
 
 class PostController extends Controller
 {
@@ -38,8 +39,14 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $post = PostResource::make($post)->resolve();
-        // dd($post);
-        return inertia('Admin/Post/Show', compact('post'));
+        $images = explode('|', $post['image_path']);
+        $urls = [];
+        foreach($images as $image){
+            $url = Storage::disk('public')->url($image);
+            $urls[] = $url;
+        }
+
+        return inertia('Admin/Post/Show', compact('post', 'urls'));
     }
 
 
@@ -68,8 +75,13 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        $data['image_path'] = Storage::disk('public')->put('/images', $data['image']);
-        unset($data['image']);
+        $images = [];
+        foreach($data['files'] as $file){
+            $image_path = Storage::disk('public')->put('/images', $file);
+            $images[] = $image_path;
+        }
+        unset($data['files']);
+        $data['image_path'] = implode('|', $images);
         $post = Post::create($data);
 
         return PostResource::make($post)->resolve();

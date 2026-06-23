@@ -20,7 +20,7 @@ class PostResource extends JsonResource
             'title' => $this -> title,
             'body' => $this -> body,
             'likes' => $this -> likes,
-            'img_url' => $this->img_url
+            'image_path' => $this->image_path
         ];
     }
 }

@@ -20,7 +20,7 @@ class StoreRequest extends FormRequest
             'body' => 'nullable|string',
             'category_id' => 'required|integer|exists:categories,id',
             'likes' => 'nullable|integer',
-            'image' => 'nullable|image'
+            'files' => 'nullable|array'
         ];
     }
 
