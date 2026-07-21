@@ -75,6 +75,7 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
+        dd($data);
         $images = [];
         foreach($data['files'] as $file){
             $image_path = Storage::disk('public')->put('/images', $file);
@@ -82,6 +83,7 @@ class PostController extends Controller
         }
         unset($data['files']);
         $data['image_path'] = implode('|', $images);
+        dd($data);
         $post = Post::create($data);
 
         return PostResource::make($post)->resolve();
