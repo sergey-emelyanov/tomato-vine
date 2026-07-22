@@ -61,9 +61,6 @@ import axios from 'axios';
         methods : {
             storePost () {
 
-                // let formData = new FormData();
-                // console.log(this.entries);
-
                 axios.post(route('admin.posts.store'), this.entries, {
                     headers: {
                         "Content-Type": "multipart/form-data"
@@ -78,13 +75,10 @@ import axios from 'axios';
             },
 
             setImage(e) {
-                console.log(this.entries.post.files);
                 let files = e.target.files;
                 for(let file of files){
                     this.entries.post.files.push(file);
                 }
-                // this.entries.post.files = files;
-                console.log(this.entries);
             }
 
         }

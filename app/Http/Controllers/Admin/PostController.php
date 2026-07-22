@@ -8,6 +8,7 @@ use App\Http\Resources\Category\CategoryResource;
 use App\Http\Resources\Post\PostResource;
 use App\Models\Category;
 use App\Models\Post;
+use App\Services\PostService;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\FileIterator\Facade;
 
@@ -75,16 +76,16 @@ class PostController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        dd($data);
         $images = [];
-        foreach($data['files'] as $file){
+        foreach($data['post']['files'] as $file){
             $image_path = Storage::disk('public')->put('/images', $file);
             $images[] = $image_path;
         }
-        unset($data['files']);
+        unset($data['post']['files']);
         $data['image_path'] = implode('|', $images);
-        dd($data);
-        $post = Post::create($data);
+
+        $post = PostService::store($data);
+
 
         return PostResource::make($post)->resolve();
     }

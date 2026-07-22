@@ -15,6 +15,7 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'post.title' => 'required|string',
             'post.body' => 'nullable|string',
@@ -27,10 +28,17 @@ class StoreRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-
+        //когда axios затер пустой ключ
+        if(!$this->has('post.files')){
+            $this->merge([
+                'post.files' => []
+            ]);
+        }
         return $this->merge([
-            'likes' => 0,
-            'profile_id' => Auth::user()->id
+            'post.likes' => 0,
+            'post.profile_id' => Auth::user()->id
         ]);
     }
+
+
 }
