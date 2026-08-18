@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Post;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class PostService
 {
@@ -15,9 +17,19 @@ class PostService
 
     public static function store(array $data)
     {
-        $tags = TagService::storeBatch($data['tags']);
-        $post = Post::create($data['post']);
-        $post->tags()->attach(array_column($tags, 'id'));
+        try{
+            DB::beginTransaction();
+
+            $tags = TagService::storeBatch($data['tags']);
+            $post = Post::create($data['post']);
+            $post->tags()->attach(array_column($tags, 'id'));
+
+            DB::commit();
+
+        } catch (Exception $exception){
+
+            DB::rollBack();
+        }
         return $post;
     }
 }
