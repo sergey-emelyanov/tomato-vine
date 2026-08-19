@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdminMiddleware::c
         Route::get('/post/create/', [PostController::class, 'create'])->name('admin.posts.create');
         Route::get('/post/{post}/',[PostController::class, 'show'])->name('admin.posts.show');
         Route::post('/post/', [PostController::class, 'store'])->name('admin.posts.store');
+        Route::get('/post/{post}/edit/', [PostController::class, 'edit'])->name('admin.posts.edit');
     });
 
     //категории
@@ -27,7 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdminMiddleware::c
         Route::get('/', [CategoryController::class, 'index'])->name('admin.categories.index');
         Route::get('/category/create/', [CategoryController::class, 'create'])->name('admin.categories.create');
         Route::get('/category/{category}/', [CategoryController::class, 'show'])->name('admin.categories.show');
-        Route::post('/post/', [CategoryController::class, 'store'])->name('admin.categories.store');
+        Route::post('/category/', [CategoryController::class, 'store'])->name('admin.categories.store');
     });
 
     //профили

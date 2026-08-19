@@ -89,4 +89,17 @@ class PostController extends Controller
 
         return PostResource::make($post)->resolve();
     }
+
+    /**
+     * Метод отвечающий за отрисовку формы редактирования
+     *
+     * [GET] /admin/posts/{post}/edit/
+     *
+     * @param Post $post
+     *
+     */
+    public function edit(Post $post)
+    {
+        dd($post);
+    }
 }
