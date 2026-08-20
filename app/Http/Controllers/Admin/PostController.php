@@ -100,6 +100,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        dd($post);
+        $post = PostResource::make($post)->resolve();
+        $categories = CategoryResource::collection(Category::all())->resolve();
+        $images = explode('|', $post['image_path']);
+        $urls = [];
+        foreach($images as $image){
+            $url = Storage::disk('public')->url($image);
+            $urls[] = $url;
+        }
+
+        return inertia('Admin/Post/Edit', compact('post', 'urls', 'categories'));
     }
 }
