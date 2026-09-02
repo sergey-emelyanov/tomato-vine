@@ -19,7 +19,10 @@
             <img :src="image_url" :title="post.title" :alt="post.title"/>
         </div>
         <div class="text-gray-700">
-            <p>{{ post.description }}</p>
+            <p>{{ post.body }}</p>
+        </div>
+        <div class="mb-4">
+            <input v-model="localTags" class="border border-gray-200 p-4 w-full" type="text"  placeholder="tags"/>
         </div>
     </div>
 </template>
@@ -49,6 +52,17 @@ import { Link } from '@inertiajs/vue3';
             categories : {
                 type: Object,
                 required: true
+            },
+            tags_titles: {
+                type: String,
+                required: true
+            }
+
+        },
+
+        data() {
+            return {
+                localTags: this.tags_titles
             }
         }
     }

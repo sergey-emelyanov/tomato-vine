@@ -9,6 +9,7 @@ use App\Http\Resources\Post\PostResource;
 use App\Models\Category;
 use App\Models\Post;
 use App\Services\PostService;
+use App\Services\TagService;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\FileIterator\Facade;
 
@@ -100,6 +101,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+
+        $tags_titles = TagService::getTagsTitle($post);
         $post = PostResource::make($post)->resolve();
         $categories = CategoryResource::collection(Category::all())->resolve();
         $images = explode('|', $post['image_path']);
@@ -109,6 +112,7 @@ class PostController extends Controller
             $urls[] = $url;
         }
 
-        return inertia('Admin/Post/Edit', compact('post', 'urls', 'categories'));
+
+        return inertia('Admin/Post/Edit', compact('post', 'urls', 'categories', 'tags_titles'));
     }
 }
